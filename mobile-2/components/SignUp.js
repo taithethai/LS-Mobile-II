@@ -8,10 +8,15 @@ import {
   Button,
   AsyncStorage
 } from 'react-native';
+// import {
+//   StackNavigation,
+//   TabNavigation,
+//   TabNavigationItem,
+// } from '@expo/ex-navigation';
 import axios from 'axios';
 import { NativeRouter, Route, Link } from 'react-router-native';
 import Layout from '../constants/Layout';
-import links from '../screens/LinksScreen';
+import home from '../screens/HomeScreen';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -36,7 +41,8 @@ class SignUp extends React.Component {
         });
       }
       AsyncStorage.setItem('token', response.data.token).then(() => {
-        this.props.navigate('links');
+        console.log("props >>>", this.props);
+        this.props.navigate.push('home');
       });
     });
     promise.catch((error) => {
@@ -48,7 +54,7 @@ class SignUp extends React.Component {
     const updatePass = value => this.setState({password: value});
     return (
       <View>
-        <Text>{this.state.error && this.state.error.length ? this.state.error : null}</Text>
+        <Text>{this.state.error}</Text>
         <Text>Email</Text>
         <TextInput 
           placeholder="email"
